@@ -137,6 +137,12 @@ document.getElementById("calcular-lucro").addEventListener("click", () => {
 
   desenharGrafico();
 });
+resetarBtn.addEventListener("click", () => {
+  criarCampos();                    // limpa todos os campos de input
+  tabela.innerHTML = "";           // limpa a tabela de combinações
+  acertosContainer.innerHTML = ""; // limpa a área de acertos
+});
+
 
 // Gráfico com Chart.js
 function desenharGrafico() {
