@@ -96,6 +96,16 @@ button:hover {
   padding-left: 0;
   margin-bottom: 20px;
 }
+#resetar-apostas {
+  background: #cc0000;
+  color: white;
+  margin-top: 10px;
+}
+
+#resetar-apostas:hover {
+  background: #990000;
+}
+
 
 canvas {
   max-width: 100%;
