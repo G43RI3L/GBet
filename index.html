@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Apostas - Futebol</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Simulador de Apostas - 8 Jogos</h1>
+
+    <form id="bet-form">
+      <div id="games-container"></div>
+      <label for="totalAmount">Valor total a apostar (R$):</label>
+      <input type="number" id="totalAmount" step="0.01" value="10" required>
+      <button type="submit">Simular apostas com 7 jogos</button>
+    </form>
+
+    <div id="results">
+      <h2>Combinações Geradas</h2>
+      <table id="combinations-table">
+        <thead>
+          <tr>
+            <th>Combinação</th>
+            <th>Jogos incluídos</th>
+            <th>Odd total</th>
+            <th>Valor Apostado</th>
+            <th>Retorno Estimado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="acertos">
+      <h2>Informe os jogos acertados</h2>
+      <div id="acertos-container"></div>
+      <button id="calcular-lucro">Calcular Lucro</button>
+    </div>
+
+    <div id="historico">
+      <h2>Histórico de Resultados</h2>
+      <ul id="historico-lista"></ul>
+      <canvas id="graficoLucro" width="400" height="200"></canvas>
+    </div>
+  </div>
+</body>
+</html>
