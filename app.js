@@ -21,6 +21,8 @@ const graficoCanvas = document.getElementById("graficoLucro");
 let historico = [];
 let combinations = [];
 let lucroAcumulado = 0;
+const resetarBtn = document.getElementById("resetar-apostas");
+
 
 // Cria os campos dos 8 jogos
 for (let i = 0; i < 8; i++) {
