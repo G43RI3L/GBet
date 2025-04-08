@@ -137,13 +137,45 @@ document.getElementById("calcular-lucro").addEventListener("click", () => {
   li.textContent = `Lucro da semana: R$ ${lucro.toFixed(2)} (Acumulado: R$ ${lucroAcumulado.toFixed(2)})`;
   historicoLista.appendChild(li);
 
-  desenharGrafico();
+  btnDoisErros.addEventListener("click", () => {
+  tabelaDoisErros.innerHTML = "";
+
+  const jogosValidos = Array.from(document.querySelectorAll(".jogo"))
+    .map(jogo => {
+      const odd = parseFloat(jogo.querySelector("input").value);
+      const palpite = jogo.querySelector("select").value;
+      return (odd && palpite) ? { odd, palpite } : null;
+    })
+    .filter(jogo => jogo !== null);
+
+  if (jogosValidos.length < 3) {
+    alert("Preencha pelo menos 3 jogos para gerar combinações com 2 erros.");
+    return;
+  }
+
+  const combinacoes = gerarCombinacoes(jogosValidos, jogosValidos.length - 1);
+  const apostasPorComb = Math.floor(parseFloat(valor.value) / combinacoes.length);
+
+  combinacoes.forEach((comb, idx) => {
+    for (let i = 0; i < comb.length; i++) {
+      const novaComb = [...comb];
+      const invertido = { ...novaComb[i] };
+      invertido.palpite = inverterPalpite(invertido.palpite);
+      novaComb[i] = invertido;
+
+      const oddTotal = novaComb.reduce((acc, j) => acc * j.odd, 1);
+      const retorno = (apostasPorComb * oddTotal).toFixed(2);
+
+      const row = tabelaDoisErros.insertRow();
+      row.insertCell().textContent = novaComb.map((_, j) => `J${j + 1}`).join(", ");
+      row.insertCell().textContent = novaComb.map(j => j.palpite).join(", ");
+      row.insertCell().textContent = oddTotal.toFixed(2);
+      row.insertCell().textContent = apostasPorComb;
+      row.insertCell().textContent = retorno;
+    }
+  });
 });
-resetarBtn.addEventListener("click", () => {
-  criarCampos();                    // limpa todos os campos de input
-  tabela.innerHTML = "";           // limpa a tabela de combinações
-  acertosContainer.innerHTML = ""; // limpa a área de acertos
-});
+
 
 
 // Gráfico com Chart.js
