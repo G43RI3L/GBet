@@ -111,3 +111,25 @@ canvas {
   max-width: 100%;
   height: auto;
 }
+#gerar-dois-erros {
+  background-color: #0d47a1;
+  color: white;
+  margin-top: 10px;
+}
+
+#gerar-dois-erros:hover {
+  background-color: #08306b;
+}
+
+#tabelaDoisErros {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tabelaDoisErros th,
+#tabelaDoisErros td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
