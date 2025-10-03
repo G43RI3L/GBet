@@ -72,13 +72,22 @@ function calcularOddTotal(combinacao) {
 document.getElementById("bet-form").addEventListener("submit", e => {
   e.preventDefault();
 
+  // pega só os jogos válidos (nome preenchido e odd válida)
   const jogos = [...document.querySelectorAll(".game-block")].map(el => {
-    return {
-      nome: el.querySelector(".jogo").value,
-      tipo: el.querySelector(".tipo").value,
-      odd: parseFloat(el.querySelector(".odd").value)
-    };
-  });
+    const nome = el.querySelector(".jogo").value.trim();
+    const tipo = el.querySelector(".tipo").value;
+    const odd = parseFloat(el.querySelector(".odd").value);
+    if (nome && !isNaN(odd)) {
+      return { nome, tipo, odd };
+    }
+    return null;
+  }).filter(j => j !== null);
+
+  // mínimo de 3 jogos
+  if (jogos.length < 3) {
+    alert("Preencha pelo menos 3 jogos para gerar combinações.");
+    return;
+  }
 
   const totalAmount = parseFloat(totalAmountInput.value);
   combinations = gerarCombinacoes(jogos);
