@@ -24,17 +24,17 @@ let historico = [];
 let combinations = [];
 let lucroAcumulado = 0;
 
-// Cria campos dos 8 jogos
+// Cria campos dos 8 jogos (sem required)
 for (let i = 0; i < 8; i++) {
   const div = document.createElement("div");
   div.className = "game-block";
   div.innerHTML = `
     <label>Jogo ${i + 1}</label>
-    <input type="text" placeholder="Ex: Flamengo x Palmeiras" class="jogo" required>
+    <input type="text" placeholder="Ex: Flamengo x Palmeiras" class="jogo">
     <select class="tipo">
       ${tiposDeAposta.map(tipo => `<option value="${tipo}">${tipo}</option>`).join('')}
     </select>
-    <input type="number" class="odd" step="0.01" placeholder="Odd" required>
+    <input type="number" class="odd" step="0.01" placeholder="Odd">
   `;
   gamesContainer.appendChild(div);
 }
