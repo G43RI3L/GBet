@@ -160,18 +160,20 @@ function inverterPalpite(palpite) {
 btnDoisErros.addEventListener("click", () => {
   tabelaDoisErros.innerHTML = "";
 
+  // pega apenas os jogos preenchidos
   const jogosValidos = Array.from(document.querySelectorAll(".game-block")).map(el => {
-    const nome = el.querySelector(".jogo").value;
+    const nome = el.querySelector(".jogo").value.trim();
     const tipo = el.querySelector(".tipo").value;
     const odd = parseFloat(el.querySelector(".odd").value);
-    if (nome && tipo && !isNaN(odd)) {
+    if (nome && !isNaN(odd)) {
       return { nome, palpite: tipo, odd };
     }
     return null;
   }).filter(j => j !== null);
 
+  // exige pelo menos 3 jogos
   if (jogosValidos.length < 3) {
-    alert("Preencha pelo menos 3 jogos.");
+    alert("Preencha pelo menos 3 jogos para gerar combinações.");
     return;
   }
 
@@ -179,9 +181,11 @@ btnDoisErros.addEventListener("click", () => {
   const combinacoesBase = gerarCombinacoes(jogosValidos);
   const valorPorAposta = (valorTotal / combinacoesBase.length).toFixed(2);
 
-  combinacoesBase.forEach((comb, idx) => {
+  combinacoesBase.forEach((comb) => {
     for (let i = 0; i < comb.jogos.length; i++) {
       const novaComb = [...comb.jogos];
+
+      // inverte UM palpite
       const invertido = { ...novaComb[i] };
       invertido.palpite = inverterPalpite(invertido.palpite);
       novaComb[i] = invertido;
