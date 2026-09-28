@@ -1,135 +1,50 @@
 /* style.css */
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+.container { max-width: 1000px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+h1, h2 { text-align: center; margin-bottom: 20px; }
+form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+#games-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.game-block { border: 1px solid #ccc; padding: 10px; border-radius: 8px; background: #fafafa; }
+label { display: block; margin-bottom: 5px; font-weight: bold; }
+input, select, button { padding: 8px; border-radius: 6px; border: 1px solid #ccc; width: 100%; box-sizing: border-box; }
+button { background: #0066cc; color: #fff; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+button:hover { background: #004999; }
+.odds-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.odds-linha .odd-reversa { border-color: #e0a800; background: #fffbe8; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  margin: 0;
-  padding: 0;
-}
+/* opções legíveis */
+.opcao { border: 1px solid #ddd; border-left: 5px solid #999; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; background: #fff; }
+.opcao.ganhou { border-left-color: #2e7d32; background: #f1f8f1; }
+.opcao.perdeu { border-left-color: #c62828; background: #fdf3f3; }
+.opcao ul { list-style: none; padding: 0; margin: 8px 0; }
+.opcao li { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 8px; padding: 4px 0; border-bottom: 1px dashed #eee; font-size: 14px; }
+.opcao li.reverso { background: #fff6d6; font-weight: bold; }
+.jogo-odd { text-align: right; }
+.opcao-resumo { font-size: 14px; color: #333; }
+.selo { padding: 2px 8px; border-radius: 10px; color: #fff; font-size: 12px; margin-left: 8px; }
+.selo.verde { background: #2e7d32; }
+.selo.vermelho { background: #c62828; }
+.aviso, .vazio { text-align: center; color: #8a6d00; font-size: 14px; }
 
-.container {
-  max-width: 1000px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+/* resultados */
+#acertos-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.acerto-bloco { border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+.acerto-bloco label { display: flex; align-items: center; gap: 6px; font-weight: normal; margin: 6px 0 0; }
+.acerto-bloco label input { width: auto; }
+.acerto-bloco label.desativado { color: #999; }
+.resumo { margin-top: 15px; padding: 12px; border-radius: 8px; text-align: center; }
+.resumo.ganhou { background: #e8f5e9; }
+.resumo.perdeu { background: #fdecea; }
 
-h1, h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+#historico-lista { list-style: none; padding-left: 0; margin-bottom: 20px; }
+#resetar-apostas { background: #cc0000; color: white; margin-top: 10px; }
+#resetar-apostas:hover { background: #990000; }
+#gerar-dois-erros { background-color: #0d47a1; color: white; margin-top: 10px; }
+#gerar-dois-erros:hover { background-color: #08306b; }
+canvas { max-width: 100%; height: auto; }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
+@media (max-width: 700px) {
+  #games-container, #acertos-container { grid-template-columns: 1fr; }
+  .opcao li { grid-template-columns: 1fr; }
+  .jogo-odd { text-align: left; }
 }
-
-#games-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.game-block {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 8px;
-  background: #fafafa;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input, select, button {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 100%;
-}
-
-button {
-  background: #0066cc;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #004999;
-}
-
-#combinations-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-}
-
-#combinations-table th, #combinations-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-#acertos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-#acertos-container label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-#historico-lista {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 20px;
-}
-#resetar-apostas {
-  background: #cc0000;
-  color: white;
-  margin-top: 10px;
-}
-
-#resetar-apostas:hover {
-  background: #990000;
-}
-
-
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-#gerar-dois-erros {
-  background-color: #0d47a1;
-  color: white;
-  margin-top: 10px;
-}
-
-#gerar-dois-erros:hover {
-  background-color: #08306b;
-}
-
-#tabelaDoisErros {
-  margin-top: 20px;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#tabelaDoisErros th,
-#tabelaDoisErros td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
