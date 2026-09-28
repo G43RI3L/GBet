@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador de Apostas - Futebol</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
@@ -15,48 +16,24 @@
       <div id="games-container"></div>
       <label for="totalAmount">Valor total a apostar (R$):</label>
       <input type="number" id="totalAmount" step="0.01" value="10" required>
-      <!--mudei o nome do botão só-->
       <button type="submit">Simular apostas com esses jogos</button>
       <button type="button" id="resetar-apostas">Resetar Apostas</button>
       <button type="button" id="gerar-dois-erros">Gerar Combinações com 2 Erros</button>
-
-    </form> 
-    <h2>Combinações com 2 Erros (1 removido, 1 invertido)</h2>
-    <table id="tabelaDoisErros">
-    <thead>
-      <tr>
-        <th>Jogos Incluídos</th>
-        <th>Palpites</th>
-        <th>Odd Total</th>
-        <th>Valor Apostado</th>
-        <th>Retorno</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-
+    </form>
 
     <div id="results">
       <h2>Combinações Geradas</h2>
-      <table id="combinations-table">
-        <thead>
-          <tr>
-            <th>Combinação</th>
-            <th>Jogos incluídos</th>
-            <th>Odd total</th>
-            <th>Valor Apostado</th>
-            <th>Retorno Estimado</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div id="opcoes-principais"></div>
     </div>
 
+    <h2>Combinações com 2 Erros (1 removido, 1 invertido)</h2>
+    <div id="opcoes-dois-erros"></div>
+
     <div id="acertos">
-      <h2>Informe os jogos acertados</h2>
+      <h2>Informe os resultados</h2>
       <div id="acertos-container"></div>
-      <button id="calcular-lucro">Calcular Lucro</button>
+      <button id="calcular-lucro" type="button">Calcular Lucro</button>
+      <div id="resumo-resultado"></div>
     </div>
 
     <div id="historico">
